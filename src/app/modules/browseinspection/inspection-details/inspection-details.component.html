@@ -1,0 +1,303 @@
+<!--Page header-->
+<div class="page-header">
+    <div class="page-leftheader">
+        <h4 class="page-title">Inspection Details</h4>
+    </div>
+
+</div>
+<!--End Page header-->
+<!-- row opened -->
+<div class="row row-sm">
+    <div class="col-xl-12">
+        <div class="card">
+
+            <!-- 
+			<div class="card-body recordInfo" *ngIf="adminsLists?.length==0">
+				No Record Found
+			</div> -->
+            <div class="card-body">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-default printBtn" (click)="printPage()">Print</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped text-md-nowrap" id="myTable1">
+                        <thead>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Date</th>
+                                <td>
+                                    {{convertMoment(Details?.DATE)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th>Incoming From</th>
+                                <td>
+                                    {{(Details?.INCOMINGFROM)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th>OutGoing To</th>
+                                <td>
+                                    {{(Details?.OUTGOINGTO)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th>Customer</th>
+                                <td> {{(Details?.CUSTOMER)}} </td>
+                            </tr>
+                            <tr>
+
+                                <th> Invoice Number</th>
+                                <td> {{(Details?.INVOICE_NUMBER)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> Merchandise Description</th>
+                                <td> {{(Details?.MERCHANDISE_DESCRIPTION)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> Movement Type</th>
+                                <td> {{(Details?.MOVEMENT_TYPE)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> Trailer Number</th>
+                                <td> {{(Details?.TRAILER_NUBMER)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> Trailer Type</th>
+                                <td> {{(Details?.TRAILER_TYPE)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> Trailer Company</th>
+                                <td> {{(Details?.TRAILER_COMPANY)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> Trailer Status</th>
+                                <td> {{(Details?.TRAILER_STATUS)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> CTPAT</th>
+                                <td> {{(Details?.CTPAT)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> Trailer Clean</th>
+                                <td> {{(Details?.TRAILER_CLEAN)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> Trailer Conditions</th>
+                                <td> {{(Details?.TRAILER_CONDITIONS)}}
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <th> Seal Comments</th>
+                                <td> {{(Details?.SEAL_COMMENTS)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                 <th>   Original Seal</th>
+                                    <td>   {{(Details?.ORIGINAL_SEAL)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                 <th>   Additional Seal</th>
+                                    <td>   {{(Details?.ADDITIONAL_SEAL)}}
+                                </td>
+                            </tr>
+                            <tr>
+                               
+                                 <th>   Diesel Date</th>
+                                    <td>   {{convertMoment(Details?.DIESEL_DATE)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                 <th>   Diesel Amount</th>
+                                    <td>   {{(Details?.DIESEL_AMOUNT)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>  Seal Broken</th>
+                                    <td>   {{(Details?.SEAL_BROKEN)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>  Diesel Level Arriving</th>
+                                    <td>   {{(Details?.DIESEL_LEVEL_ARRIVING)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                <th>    Actual Temprature</th>
+                                <td *ngIf="!Details?.ACTUAL_TEMP"> NA </td>
+                                    <td>   {{(Details?.ACTUAL_TEMP)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                 <th>   Set Temprature</th>
+                                 <td *ngIf="!Details?.SET_TEMP"> NA </td>
+                                    <td>    {{(Details?.SET_TEMP)}}
+                                </td>
+                            </tr>
+                            <tr>
+                               
+                                <th>    Truck Number</th>
+                                    <td>    {{(Details?.TRUCK_NUMBER)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>  Truck Company</th>
+                                    <td>    {{(Details?.TRUCK_COMPANY)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>Driver Name</th>
+                                    <td>   {{(Details?.DRIVER_NAME)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>  Driver License</th>
+                                    <td>  {{(Details?.DRIVER_LICENSE)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>  Trailer Location</th>
+                                <td>{{(Details?.TRAILER_LOCATION)}}
+                                </td>
+                            </tr>
+                            <tr>
+                               
+                                  <th>Driver Picture</th>
+                                    <td>  <img src="{{Details?.DRIVER_PICTURE}}" (error)="handleMissingImage($event,'DRIVER_PICTURE')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>License Picture</th>
+                                    <td>  <img src="{{Details?.LICENSE_PICTURE}}" (error)="handleMissingImage($event,'LICENSE_PICTURE')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                   <th>Seal Picture</th>
+                                    <td>  <img src="{{Details?.SEAL_PICTURE}}" (error)="handleMissingImage($event,'SEAL_PICTURE')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                 <th>Temprature Picture</th>
+                                    <td>  <img src="{{Details?.TEMPERATURE_PICTURE}}" (error)="handleMissingImage($event,'TEMPERATURE_PICTURE')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>  Front Trailer Picture</th>
+                                    <td>   <img src="{{Details?.Front_Trailer}}" (error)="handleMissingImage($event,'Front_Trailer')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>  Roof Picture</th>
+                                    <td>  <img src="{{Details?.Roof}}" (error)="handleMissingImage($event,'Roof')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>  Undercarriage Picture</th>
+                                    <td>  <img src="{{Details?.Undercarriage}}" (error)="handleMissingImage($event,'Undercarriage')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                 <th>   Door Picture</th>
+                                    <td>   <img src="{{Details?.DOOR_PICTURE}}" (error)="handleMissingImage($event,'DOOR_PICTURE')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                 <th>   Left Side Picture</th>
+                                    <td>  <img src="{{Details?.LEFT_SIDE_PICTURE}}" (error)="handleMissingImage($event,'LEFT_SIDE_PICTURE')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>Right Side Picture</th>
+                                    <td>  <img src="{{Details?.RIGHT_SIDE_PICTURE}}" (error)="handleMissingImage($event,'RIGHT_SIDE_PICTURE')">
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                  <th>Floor Picture</th>
+                                    <td>   <img src="{{Details?.FLOOR_PICTURE}}" (error)="handleMissingImage($event,'FLOOR_PICTURE')">
+                                </td>
+                            </tr>
+
+
+                            <!-- 								<td>{{table.TRAILER_NUBMER}}</td>
+                                
+                                <td>
+                                    {{table.INCOMINGFROM | titlecase}}
+                                </td>
+                                <td>
+                                    {{table.OUTGOINGTO}}
+                                </td>
+                                <td>
+                                    {{table.CTPAT}}
+                                </td>
+                                <td>
+                                    {{table.TRAILER_CONDITIONS}}
+                                </td>
+								<td>
+									<img src="{{table.DRIVER_PICTURE}}">
+								 </td>
+                            
+ -->
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 		<pagination-controls
+				*ngIf="count>5"
+				previousLabel="Prev"
+				nextLabel="Next"
+				(pageChange)="adminData($event,1)"
+				class="page-link"
+    			>
+    			</pagination-controls> -->
+
+
+
+            </div>
+        </div>
+    </div>

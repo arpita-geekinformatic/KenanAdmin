@@ -1,0 +1,659 @@
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">{{!updateid ? 'Add' : 'Update' }} Inspection</h4>
+	</div>
+
+</div>
+<!--End Page header-->
+<div class="row">
+	<div class="col-xl-12 col-lg-12 col-md-12" >
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">{{!updateid ? 'Add' : 'Update' }} Inspection</h3>
+			</div>
+			<div class="card-body">
+				<form class="trailerInfo" [formGroup]="trailerRegisterForm" (ngSubmit)="!updateid ? addTrailer(): UpdateTrailer()">
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">Date <span class="text-red">*</span></label>
+								<input type="date" class="form-control" placeholder="Date" required autocomplete="on"
+									[ngClass]="{
+														'is-invalid': trailerRegisterForm.controls['DATE'].invalid && (trailerRegisterForm.controls['DATE'].dirty || trailerRegisterForm.controls['DATE'].touched) 
+													  }" formControlName="DATE">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['DATE'].invalid && (trailerRegisterForm.controls['DATE'].dirty || trailerRegisterForm.controls['DATE'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['DATE'].errors.required"
+									class="text-danger">
+									Required
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">Incoming From <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="Incoming From" required
+									autocomplete="on" [ngClass]="{
+														'is-invalid': trailerRegisterForm.controls['INCOMINGFROM'].invalid && (trailerRegisterForm.controls['INCOMINGFROM'].dirty || trailerRegisterForm.controls['INCOMINGFROM'].touched) 
+													  }" formControlName="INCOMINGFROM">
+
+
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['INCOMINGFROM'].invalid && (trailerRegisterForm.controls['INCOMINGFROM'].dirty || trailerRegisterForm.controls['INCOMINGFROM'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['INCOMINGFROM'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">OUTGOING TO <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="OUTGOING TO" required
+									autocomplete="on" [ngClass]="{
+														'is-invalid': trailerRegisterForm.controls['OUTGOINGTO'].invalid && (trailerRegisterForm.controls['OUTGOINGTO'].dirty || trailerRegisterForm.controls['OUTGOINGTO'].touched) 
+													  }" formControlName="OUTGOINGTO">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['OUTGOINGTO'].invalid && (trailerRegisterForm.controls['OUTGOINGTO'].dirty || trailerRegisterForm.controls['OUTGOINGTO'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['OUTGOINGTO'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6  col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">CUSTOMER <span class="text-red">*</span></label>
+								<input type="text" name="CUSTOMER" class="form-control" autocomplete="off"
+									placeholder="Enter CUSTOMER Name" required [ngClass]="{
+														'is-invalid': trailerRegisterForm.controls['CUSTOMER'].invalid && (trailerRegisterForm.controls['CUSTOMER'].dirty || trailerRegisterForm.controls['CUSTOMER'].touched) 
+													  }" formControlName="CUSTOMER">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['CUSTOMER'].invalid && (trailerRegisterForm.controls['CUSTOMER'].dirty || trailerRegisterForm.controls['CUSTOMER'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['CUSTOMER'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">MERCHANDISE DESCRIPTION <span
+										class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="MERCHANDISE DESCRIPTION " required
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['MERCHANDISE_DESCRIPTION'].invalid && (trailerRegisterForm.controls['MERCHANDISE_DESCRIPTION'].dirty || trailerRegisterForm.controls['MERCHANDISE_DESCRIPTION'].touched) 
+														  }" formControlName="MERCHANDISE_DESCRIPTION">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['MERCHANDISE_DESCRIPTION'].invalid && (trailerRegisterForm.controls['MERCHANDISE_DESCRIPTION'].dirty || trailerRegisterForm.controls['MERCHANDISE_DESCRIPTION'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['MERCHANDISE_DESCRIPTION'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">INVOICE NUMBER <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="INVOICE NUMBER" required min="1" max="16"
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['INVOICE_NUMBER'].invalid && (trailerRegisterForm.controls['INVOICE_NUMBER'].dirty || trailerRegisterForm.controls['INVOICE_NUMBER'].touched) 
+														  }" formControlName="INVOICE_NUMBER">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['INVOICE_NUMBER'].invalid && (trailerRegisterForm.controls['INVOICE_NUMBER'].dirty || trailerRegisterForm.controls['INVOICE_NUMBER'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['INVOICE_NUMBER'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+					
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">MOVEMENT TYPE <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="MOVEMENT TYPE" required
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['INCOMINGFROM'].invalid && (trailerRegisterForm.controls['INCOMINGFROM'].dirty || trailerRegisterForm.controls['INCOMINGFROM'].touched) 
+														  }" formControlName="MOVEMENT_TYPE">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['MOVEMENT_TYPE'].invalid && (trailerRegisterForm.controls['MOVEMENT_TYPE'].dirty || trailerRegisterForm.controls['MOVEMENT_TYPE'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['MOVEMENT_TYPE'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">TRAILER NUMBER <span class="text-red">*</span></label>
+								<input type="text" name="lastName" class="form-control" autocomplete="off"
+									placeholder="TRAILER NUBMER" required [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['TRAILER_NUBMER'].invalid && (trailerRegisterForm.controls['TRAILER_NUBMER'].dirty || trailerRegisterForm.controls['TRAILER_NUBMER'].touched) 
+														  }" formControlName="TRAILER_NUBMER">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['TRAILER_NUBMER'].invalid && (trailerRegisterForm.controls['TRAILER_NUBMER'].dirty || trailerRegisterForm.controls['TRAILER_NUBMER'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['TRAILER_NUBMER'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+					</div>
+
+		 	<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">TRAILER TYPE <span class="text-red">*</span></label>
+								<select class="custom-select mb-3" (ngModelChange)="checkTemp($event)" formControlName="TRAILER_TYPE">
+									<option value="">TRAILER</option>
+									<option value="Dry Van(Reqular)">Dry Van(Reqular)</option>
+									<option value="Flat Bed">Flat Bed</option>
+									<option value="Reefer">Reefer</option>
+									<option value="Tanker">Tanker</option>
+									<option value="Intermodal">Intermodal</option>
+
+
+								</select>
+								<div
+									*ngIf="trailerRegisterForm.controls['TRAILER_TYPE'].invalid && (trailerRegisterForm.controls['TRAILER_TYPE'].dirty || trailerRegisterForm.controls['TRAILER_TYPE'].touched)">
+									<div *ngIf="adminRegisterForm.controls['TRAILER_TYPE'].errors.required"
+										class="text-danger">
+										Required									</div>
+								</div>
+
+
+							</div>
+
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">TRAILER COMPANY <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="TRAILER COMPANY" required
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['TRAILER_COMPANY'].invalid && (trailerRegisterForm.controls['TRAILER_COMPANY'].dirty || trailerRegisterForm.controls['TRAILER_COMPANY'].touched) 
+														  }" formControlName="TRAILER_COMPANY">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['TRAILER_COMPANY'].invalid && (trailerRegisterForm.controls['TRAILER_COMPANY'].dirty || trailerRegisterForm.controls['TRAILER_COMPANY'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['TRAILER_COMPANY'].errors.required"
+									class="text-danger">
+									Required								</div>
+								</div>
+							
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">TRAILER STATUS <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="TRAILER STATUS" required
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['TRAILER_STATUS'].invalid && (trailerRegisterForm.controls['TRAILER_STATUS'].dirty || trailerRegisterForm.controls['TRAILER_STATUS'].touched) 
+														  }" formControlName="TRAILER_STATUS">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['TRAILER_STATUS'].invalid && (trailerRegisterForm.controls['TRAILER_STATUS'].dirty || trailerRegisterForm.controls['TRAILER_STATUS'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['TRAILER_STATUS'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+							<div class="mb-3">
+
+
+								<label class="form-label">CTPAT ACCEPTED REJECTED <span
+										class="text-red">*</span></label>
+								<select class="custom-select mb-3" formControlName="CTPAT">
+									<option value="">Select</option>
+									<option value="ACCEPTED">ACCEPTED</option>
+									<option value="REJECTED">REJECTED</option>
+
+
+								</select>
+								<div
+									*ngIf="trailerRegisterForm.controls['CTPAT'].invalid && (trailerRegisterForm.controls['CTPAT'].dirty || trailerRegisterForm.controls['CTPAT'].touched)">
+									<div *ngIf="adminRegisterForm.controls['CTPAT'].errors.required"
+										class="text-danger">
+										Required									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 col-md-4 col-lg-6 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">TRAILER CLEAN? <span class="text-red">*</span></label>
+								<select class="custom-select mb-3"  
+							(ngModelChange)="checkTrailerClean($event)" 
+								formControlName="TRAILER_CLEAN">
+									<option value="">Select</option>
+
+									<option value="No">No</option>
+									<option value="Yes">Yes</option>
+									
+
+
+								</select>
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['TRAILER_CLEAN'].invalid && (trailerRegisterForm.controls['TRAILER_CLEAN'].dirty || trailerRegisterForm.controls['TRAILER_CLEAN'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['TRAILER_CLEAN'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-8 col-md-8 col-lg-6 col-xl-9">
+							<div class="mb-3">
+								<label class="form-label">DESCRIBE TRAILER CONDITIONS<span
+										class="text-red">*</span></label>
+								<select class="custom-select mb-3" formControlName="TRAILER_CONDITIONS">
+									<option value="">Select Trailer Conditions</option>
+
+									<option value="CLEAN">CLEAN</option>
+									<option value="Odors">Odors</option>
+									<option value="Organic">Organic</option>
+									<option value="Residual">Residual</option>
+									<option value="Blood">Blood</option>
+									<option value="Seeds">Seeds</option>
+									<option value="Dirty">Dirty</option>
+
+
+								</select>
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['TRAILER_CONDITIONS'].invalid && (trailerRegisterForm.controls['TRAILER_CONDITIONS'].dirty || trailerRegisterForm.controls['TRAILER_CONDITIONS'].touched)">
+								<div *ngIf="adminRegisterForm.controls['TRAILER_CONDITIONS'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+					</div>
+				
+					<div class="row">
+						<div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">SEAL COMMENTS <span class="text-red">*</span></label>
+								<input type="text" name="SEAL_COMMENTS" class="form-control" autocomplete="off"
+									placeholder="SEAL COMMENTS" required [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['SEAL_COMMENTS'].invalid && (trailerRegisterForm.controls['SEAL_COMMENTS'].dirty || trailerRegisterForm.controls['SEAL_COMMENTS'].touched) 
+														  }" formControlName="SEAL_COMMENTS">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['SEAL_COMMENTS'].invalid && (trailerRegisterForm.controls['SEAL_COMMENTS'].dirty || trailerRegisterForm.controls['SEAL_COMMENTS'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['SEAL_COMMENTS'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">ORIGINAL SEAL <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="ORIGINAL SEAL" required
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['ORIGINAL_SEAL'].invalid && (trailerRegisterForm.controls['ORIGINAL_SEAL'].dirty || trailerRegisterForm.controls['ORIGINAL_SEAL'].touched) 
+														  }" formControlName="ORIGINAL_SEAL">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['ORIGINAL_SEAL'].invalid && (trailerRegisterForm.controls['ORIGINAL_SEAL'].dirty || trailerRegisterForm.controls['ORIGINAL_SEAL'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['ORIGINAL_SEAL'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+							<div class="mb-3">
+								<label class="form-label">ADDITIONAL SEAL <span class="text-red">*</span></label>
+								<input type="text" name="ADDITIONAL_SEAL" class="form-control" autocomplete="off"
+									placeholder="Enter Last Name" required [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['ADDITIONAL_SEAL'].invalid && (trailerRegisterForm.controls['ADDITIONAL_SEAL'].dirty || trailerRegisterForm.controls['ADDITIONAL_SEAL'].touched) 
+														  }" formControlName="ADDITIONAL_SEAL">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['ADDITIONAL_SEAL'].invalid && (trailerRegisterForm.controls['ADDITIONAL_SEAL'].dirty || trailerRegisterForm.controls['ADDITIONAL_SEAL'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['ADDITIONAL_SEAL'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-12 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">DATE <span class="text-red">*</span></label>
+								<input type="date" class="form-control" placeholder="date" required autocomplete="on"
+									[ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['DIESEL_DATE'].invalid && (trailerRegisterForm.controls['DIESEL_DATE'].dirty || trailerRegisterForm.controls['DIESEL_DATE'].touched) 
+														  }" formControlName="DIESEL_DATE">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['DIESEL_DATE'].invalid && (trailerRegisterForm.controls['DIESEL_DATE'].dirty || trailerRegisterForm.controls['DIESEL_DATE'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['DIESEL_DATE'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+				 <div class="col-md-12 col-lg-5 col-xl-5">
+							<div class="mb-3">
+								<label class="form-label"> AMOUNT OF DIESEL ADDED AT YARD <span
+										class="text-red">*</span></label>
+								<select class="custom-select" formControlName="DIESEL_AMOUNT">
+									<option value="">SELECT AMOUNT</option>
+
+									<option *ngFor ="let props of countArr" [value]="props">{{props}}</option>
+									
+								</select>
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['DIESEL_AMOUNT'].invalid && (trailerRegisterForm.controls['DIESEL_AMOUNT'].dirty || trailerRegisterForm.controls['DIESEL_AMOUNT'].touched)">
+								<div *ngIf="adminRegisterForm.controls['DIESEL_AMOUNT'].errors.required"
+									class="text-danger">
+									DIESEL_AMOUNT required
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12 col-lg-4 col-xl-4">
+							<div class="mb-3">
+								<label class="form-label">WAS SEAL BROKEN BEFORE JOA<span
+									class="text-red">*</span></label>
+									<select class="custom-select" formControlName="SEAL_BROKEN">
+										<option value="">SELECT AMOUNT</option>
+	
+										<option value="Yes">Yes</option>
+										<option value="No">No</option>
+									
+								</select> 
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['SEAL_BROKEN'].invalid && (trailerRegisterForm.controls['SEAL_BROKEN'].dirty || trailerRegisterForm.controls['SEAL_BROKEN'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['SEAL_BROKEN'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+					</div>
+
+					 <div class="row">
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">DIESEL LEVEL ARRIVING <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="DIESEL LEVEL ARRIVING" required
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['DIESEL_LEVEL_ARRIVING'].invalid && (trailerRegisterForm.controls['DIESEL_LEVEL_ARRIVING'].dirty || trailerRegisterForm.controls['DIESEL_LEVEL_ARRIVING'].touched) 
+														  }" formControlName="DIESEL_LEVEL_ARRIVING">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['DIESEL_LEVEL_ARRIVING'].invalid && (trailerRegisterForm.controls['DIESEL_LEVEL_ARRIVING'].dirty || trailerRegisterForm.controls['DIESEL_LEVEL_ARRIVING'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['DIESEL_LEVEL_ARRIVING'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">ACTUAL TEMP<span class="text-red">*</span></label>
+								<input type="text" [attr.disabled]="disableTemp?'':null" class="form-control" placeholder="ACTUAL TEMP"
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['ACTUAL_TEMP'].invalid && (trailerRegisterForm.controls['ACTUAL_TEMP'].dirty || trailerRegisterForm.controls['ACTUAL_TEMP'].touched) 
+														  }" formControlName="ACTUAL_TEMP">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['ACTUAL_TEMP'].invalid && (trailerRegisterForm.controls['ACTUAL_TEMP'].dirty || trailerRegisterForm.controls['ACTUAL_TEMP'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['ACTUAL_TEMP'].errors.required"
+									class="text-danger">
+									Required
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">SET TEMP <span class="text-red">*</span></label>
+								<input [attr.disabled]="disableTemp?'':null"  type="text" class="form-control" placeholder="SET TEMP" 
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['SET_TEMP'].invalid && (trailerRegisterForm.controls['SET_TEMP'].dirty || trailerRegisterForm.controls['SET_TEMP'].touched) 
+														  }" formControlName="SET_TEMP">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['SET_TEMP'].invalid && (trailerRegisterForm.controls['SET_TEMP'].dirty || trailerRegisterForm.controls['SET_TEMP'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['SET_TEMP'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">TRUCK NUMBER <span class="text-red">*</span></label>
+								<input type="text" name="TRUCK NUMBER" class="form-control" autocomplete="off"
+									placeholder="TRUCK NUMBER" required [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['TRUCK_NUMBER'].invalid && (trailerRegisterForm.controls['TRUCK_NUMBER'].dirty || trailerRegisterForm.controls['TRUCK_NUMBER'].touched) 
+														  }" formControlName="TRUCK_NUMBER">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['TRUCK_NUMBER'].invalid && (trailerRegisterForm.controls['TRUCK_NUMBER'].dirty || trailerRegisterForm.controls['TRUCK_NUMBER'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['TRUCK_NUMBER'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+
+					</div> 
+
+
+					<div class="row">
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">TRUCK COMPANY <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="TRUCK COMPANY" required
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['TRUCK_COMPANY'].invalid && (trailerRegisterForm.controls['TRUCK_COMPANY'].dirty || trailerRegisterForm.controls['TRUCK_COMPANY'].touched) 
+														  }" formControlName="TRUCK_COMPANY">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['TRUCK_COMPANY'].invalid && (trailerRegisterForm.controls['TRUCK_COMPANY'].dirty || trailerRegisterForm.controls['TRUCK_COMPANY'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['TRUCK_COMPANY'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">DRIVER'S NAME<span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="DRIVER'S NAME" required
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['DRIVER_NAME'].invalid && (trailerRegisterForm.controls['DRIVER_NAME'].dirty || trailerRegisterForm.controls['DRIVER_NAME'].touched) 
+														  }" formControlName="DRIVER_NAME">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['DRIVER_NAME'].invalid && (trailerRegisterForm.controls['DRIVER_NAME'].dirty || trailerRegisterForm.controls['DRIVER_NAME'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['DRIVER_NAME'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">DRIVER'S LICENSE <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="DRIVER'S LICENSE" required
+									autocomplete="on" [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['DRIVER_LICENSE'].invalid && (trailerRegisterForm.controls['DRIVER_LICENSE'].dirty || trailerRegisterForm.controls['DRIVER_LICENSE'].touched) 
+														  }" formControlName="DRIVER_LICENSE">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['DRIVER_LICENSE'].invalid && (trailerRegisterForm.controls['DRIVER_LICENSE'].dirty || trailerRegisterForm.controls['DRIVER_LICENSE'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['DRIVER_LICENSE'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">TRAILER LOCATION <span class="text-red">*</span></label>
+								<input type="text" name="TRAILER_LOCATION" class="form-control" autocomplete="off"
+									placeholder="TRAILER LOCATION " required [ngClass]="{
+															'is-invalid': trailerRegisterForm.controls['TRAILER_LOCATION'].invalid && (trailerRegisterForm.controls['TRAILER_LOCATION'].dirty || trailerRegisterForm.controls['TRAILER_LOCATION'].touched) 
+														  }" formControlName="TRAILER_LOCATION">
+							</div>
+							<div
+								*ngIf="trailerRegisterForm.controls['TRAILER_LOCATION'].invalid && (trailerRegisterForm.controls['TRAILER_LOCATION'].dirty || trailerRegisterForm.controls['TRAILER_LOCATION'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['TRAILER_LOCATION'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div>
+						</div>
+
+					</div> 
+
+					<div class="row">
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3 ">
+							<div class="mb-3">
+								<label class="form-label">DRIVER'S Picture<span class="text-red">*</span></label>
+			
+								<input type="file" class="form-control" autocomplete="on" (change)="onFileChanged($event,'DRIVER_PICTURE')">						  
+							</div>
+							<div >
+								<img [src] ="trailerRegisterForm['controls']['DRIVER_PICTURE'].value">
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">License picture<span class="text-red">*</span></label>
+
+														  		
+							<input type="file" class="form-control" autocomplete="on" (change)="onFileChanged($event,'LICENSE_PICTURE')">
+							</div>
+							<div >
+								<img [src] ="trailerRegisterForm['controls']['LICENSE_PICTURE'].value">
+							</div>
+						</div>
+
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">Seal Picture<span class="text-red">*</span></label>
+								<input type="file" class="form-control" autocomplete="on" (change)="onFileChanged($event,'SEAL_PICTURE')">
+								</div>
+							<div >
+								<img [src] ="trailerRegisterForm['controls']['SEAL_PICTURE'].value">
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">Temprature Picture<span class="text-red">*</span></label>
+								<input type="file" class="form-control"  (change)="onFileChanged($event,'TEMPERATURE_PICTURE')"
+									autocomplete="on">
+							</div>
+							<div >
+                          <img [src] ="trailerRegisterForm['controls']['TEMPERATURE_PICTURE'].value">
+							</div>
+							<!-- <div
+								*ngIf="trailerRegisterForm.controls['TEMPERATURE_PICTURE'].invalid && (trailerRegisterForm.controls['TEMPERATURE_PICTURE'].dirty || trailerRegisterForm.controls['TEMPERATURE_PICTURE'].touched)">
+								<div *ngIf="trailerRegisterForm.controls['TEMPERATURE_PICTURE'].errors.required"
+									class="text-danger">
+									Required								</div>
+							</div> -->
+						</div>
+					
+					</div>
+					
+
+
+
+					<div class="row">
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3 ">
+							<div class="mb-3">
+								<label class="form-label"> Front Trailer<span class="text-red">*</span></label>
+								
+								<input type="file" class="form-control" (change)="onFileChanged($event,'Front_Trailer')" autocomplete="on" >
+							</div>
+							<div >
+								<img [src] ="trailerRegisterForm['controls']['Front_Trailer'].value">
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+							<label class="form-label">Roof<span class="text-red">*</span></label>
+								
+							<input type="file" class="form-control" autocomplete="on" (change)="onFileChanged($event,'Roof')">
+							</div>
+							<div >
+								<img [src] ="trailerRegisterForm['controls']['Roof'].value">
+							</div>
+						</div>
+
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">Undercarriage<span class="text-red">*</span></label>
+							
+							<input type="file" class="form-control" autocomplete="on" (change)="onFileChanged($event,'Undercarriage')">							</div>
+							<div >
+								<img [src] ="trailerRegisterForm['controls']['Undercarriage'].value">
+							</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+						
+							<div class="mb-3">
+								<label class="form-label">Doors/Back<span class="text-red">*</span></label>
+			
+						<input type="file" class="form-control" autocomplete="on" (change)="onFileChanged($event,'DOOR_PICTURE')">						  	
+							</div>
+							<div >
+								<img [src] ="trailerRegisterForm['controls']['DOOR_PICTURE'].value">
+							</div>
+						</div>
+					</div>
+
+				<div class="row mt-5">
+						
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+					
+							<div class="mb-3">
+								<label class="form-label">Left Side Picture<span class="text-red">*</span></label>
+							
+							 <input type="file" class="form-control" autocomplete="on" (change)="onFileChanged($event,'LEFT_SIDE_PICTURE')">
+							</div>
+							<div >
+								<img [src] ="trailerRegisterForm['controls']['LEFT_SIDE_PICTURE'].value">
+							</div>
+
+						</div>
+
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+			
+						<div class="mb-3">
+							<label class="form-label">Right Side Picture<span class="text-red">*</span></label>
+							
+							<input type="file" class="form-control" autocomplete="on" (change)="onFileChanged($event,'RIGHT_SIDE_PICTURE')">
+													</div>
+						<div>
+							<img [src] ="trailerRegisterForm['controls']['RIGHT_SIDE_PICTURE'].value">
+						</div>
+						</div>
+						<div class="col-sm-6 col-lg-6 col-lg-3 col-xl-3">
+							<div class="mb-3">
+								<label class="form-label">floor picture<span class="text-red">*</span></label>
+	
+							<input type="file" [value] = "trailerRegisterForm['controls']['FLOOR_PICTURE'].value" class="form-control" autocomplete="on" (change)="onFileChanged($event,'FLOOR_PICTURE')">
+														</div>
+							<div >
+								<img [src] ="trailerRegisterForm['controls']['FLOOR_PICTURE'].value">
+							</div>
+						</div>
+					</div> 
+
+					<div class="btnWrap">
+						
+						<button type="submit" [disabled]="!submitted"
+												 class="btn  btn-primary btn-block px-2 btn-submit d-flex">
+							<div class="arrow bounce"><i class="fe fe-arrow-right "></i></div>
+							{{!updateid ? 'Add' : 'Update' }}
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

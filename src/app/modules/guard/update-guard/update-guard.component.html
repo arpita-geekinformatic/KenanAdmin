@@ -1,0 +1,124 @@
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">Register</h4>
+	</div>
+
+</div>
+<!--End Page header-->
+<div class="row">
+	<div class="col-xl-12 col-lg-12 col-md-12">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">User Details</h3>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<form [formGroup]="adminRegisterForm" (ngSubmit)="!updateid ? addAdmin() :  UpdateAdmindata()">
+						<div class="col-sm-6 col-md-6">
+							<div class="mb-3">
+								<label class="form-label">First Name <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="First name" required
+									autocomplete="on" [ngClass]="{
+														'is-invalid': adminRegisterForm.controls['firstName'].invalid && (adminRegisterForm.controls['firstName'].dirty || adminRegisterForm.controls['firstName'].touched) 
+													  }" formControlName="firstName">
+							</div>
+							<div
+								*ngIf="adminRegisterForm.controls['firstName'].invalid && (adminRegisterForm.controls['firstName'].dirty || adminRegisterForm.controls['firstName'].touched)">
+								<div *ngIf="adminRegisterForm.controls['firstName'].errors.required"
+									class="text-danger">
+									first Name is required
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6">
+							<div class="mb-3">
+								<label class="form-label">Last Name <span class="text-red">*</span></label>
+								<input type="text" name="lastName" class="form-control" autocomplete="off"
+									placeholder="Enter Last Name" required [ngClass]="{
+														'is-invalid': adminRegisterForm.controls['lastName'].invalid && (adminRegisterForm.controls['lastName'].dirty || adminRegisterForm.controls['lastName'].touched) 
+													  }" formControlName="lastName">
+							</div>
+							<div
+								*ngIf="adminRegisterForm.controls['lastName'].invalid && (adminRegisterForm.controls['lastName'].dirty || adminRegisterForm.controls['lastName'].touched)">
+								<div *ngIf="adminRegisterForm.controls['lastName'].errors.required" class="text-danger">
+									last Name is required
+								</div>
+							</div>
+						</div>
+					
+						<div class="col-sm-6 col-md-6" *ngIf="updateid ===null">
+							<div class="d-grid">
+                                <label class="form-label">User <span class="text-red">*</span></label>
+                                <select class="custom-select mb-3" formControlName="userType" disabled="disabled">
+                                    <option value="Guard">Guard</option>
+									<option *ngFor="let users of userItems" [ngvalue]="users[value]" > 
+										{{users.value}}
+									</option>
+                                </select>
+                                <div
+                                    *ngIf="adminRegisterForm.controls['userType'].invalid && (adminRegisterForm.controls['userType'].dirty || adminRegisterForm.controls['userType'].touched)">
+                                    <div *ngIf="adminRegisterForm.controls['userType'].errors.required"
+                                        class="text-danger">
+                                        User type required
+                                    </div>
+                                </div>
+                            </div>
+							
+						
+						</div>
+
+
+						<div class="col-sm-6 col-md-6">
+							<div class="mb-3">
+								<label class="form-label">Email address<span class="text-red">*</span></label>
+								<input type="email" class="form-control" placeholder="Email" autocomplete="off"
+									placeholder="Enter Email" required [ngClass]="{
+														'is-invalid': adminRegisterForm.controls['email'].invalid && (adminRegisterForm.controls['email'].dirty || adminRegisterForm.controls['email'].touched) 
+													  }" formControlName="email">
+							</div>
+							<div
+								*ngIf="adminRegisterForm.controls['email'].invalid && (adminRegisterForm.controls['email'].dirty || adminRegisterForm.controls['email'].touched)  ">
+
+								<div *ngIf="adminRegisterForm.controls['email'].errors?.email" class="text-danger">
+									Email address is invalid
+								</div>
+
+								<div *ngIf="adminRegisterForm.controls['email'].errors.required" class="text-danger">
+									Email address is required
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6" *ngIf="!updateid">
+							<div class="mb-3">
+								<label class="form-label">Password <span class="text-red">*</span></label>
+								<input type="password" name="password" class="form-control" placeholder="Password"
+									autocomplete="off" required [ngClass]="{
+														'is-invalid': adminRegisterForm.controls['password'].invalid && (adminRegisterForm.controls['password'].dirty || adminRegisterForm.controls['password'].touched) 
+													  }" formControlName="password">
+
+							</div>
+							<div
+								*ngIf="adminRegisterForm.controls['password'].invalid && (adminRegisterForm.controls['password'].dirty || adminRegisterForm.controls['password'].touched)">
+								<div *ngIf="adminRegisterForm.controls['password'].errors.required" class="text-danger">
+									Password is required
+								</div>
+								<div *ngIf="adminRegisterForm.controls['password'].errors.minlength"
+									class="text-danger">
+									Password must be at least 6 characters
+								</div>
+							</div>
+						</div>
+						<div class="form-footer mt-2">
+							<button type="submit" [disabled]="
+												adminRegisterForm.invalid" class="btn  btn-primary btn-block px-2 btn-submit d-flex">
+								<div class="arrow bounce"><i class="fe fe-arrow-right "></i></div>
+								{{updateid ===null ? 'Add' : 'Update' }}
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

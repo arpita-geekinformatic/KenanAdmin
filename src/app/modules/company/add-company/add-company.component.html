@@ -1,0 +1,103 @@
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">{{!updateid ? 'Register':'Update'}}</h4>
+	</div>
+	<div class="page-rightheader ms-auto d-lg-flex d-none">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="javascript:void(0)" class="d-flex"><span class="breadcrumb-icon">
+						Company</span></a></li>
+			<!-- <li class="breadcrumb-item"><a href="javascript:void(0)">Tables</a></li> -->
+			<li class="breadcrumb-item active" aria-current="page">add</li>
+		</ol>
+	</div>
+</div>
+<!--End Page header-->
+<div class="row">
+	<div class="col-xl-12 col-lg-12 col-md-12">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title"> Company Details </h3>
+			</div>
+			
+			<div class="card-body">
+				<div class="row">
+					<form [formGroup]="companyRegisterForm" (ngSubmit)="!updateid ? addCompany() :  UpdateCompanydata()">
+						<div class="col-sm-6 col-md-6">
+							<div class="mb-3">
+								<label class="form-label">Company Name <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="Company Name" required
+									autocomplete="on" [ngClass]="{
+														'is-invalid': companyRegisterForm.controls['companyName'].invalid && (companyRegisterForm.controls['companyName'].dirty || companyRegisterForm.controls['companyName'].touched) 
+													  }" formControlName="companyName">
+							</div>
+							<div
+								*ngIf="companyRegisterForm.controls['companyName'].invalid && (companyRegisterForm.controls['companyName'].dirty || companyRegisterForm.controls['companyName'].touched)">
+								<div *ngIf="companyRegisterForm.controls['companyName'].errors.required"
+									class="text-danger">
+									 required
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6">
+							<div class="mb-3">
+								<label class="form-label">companyType <span class="text-red">*</span></label>
+								<input type="text" name="companyType" class="form-control" autocomplete="off"
+									placeholder="companyType" required [ngClass]="{
+														'is-invalid': companyRegisterForm.controls['companyType'].invalid && (companyRegisterForm.controls['companyType'].dirty || companyRegisterForm.controls['companyType'].touched) 
+													  }" formControlName="companyType">
+							</div>
+							<div
+								*ngIf="companyRegisterForm.controls['companyType'].invalid && (companyRegisterForm.controls['companyType'].dirty || companyRegisterForm.controls['companyType'].touched)">
+								<div *ngIf="companyRegisterForm.controls['companyType'].errors.required" class="text-danger">
+									required
+								</div>
+							</div>
+						</div>
+					
+
+
+						<div class="col-sm-6 col-md-6">
+							<div class="mb-3">
+								<label class="form-label">Email address<span class="text-red">*</span></label>
+								<input type="email" class="form-control" placeholder="Email" autocomplete="off"
+									placeholder="Enter Email" required [ngClass]="{
+														'is-invalid': companyRegisterForm.controls['email'].invalid && (companyRegisterForm.controls['email'].dirty || companyRegisterForm.controls['email'].touched) 
+													  }" formControlName="email">
+							</div>
+							<div
+								*ngIf="companyRegisterForm.controls['email'].invalid && (companyRegisterForm.controls['email'].dirty || companyRegisterForm.controls['email'].touched)  ">
+
+								<div *ngIf="companyRegisterForm.controls['email'].errors?.email" class="text-danger">
+									Email address is invalid
+								</div>
+
+								<div *ngIf="companyRegisterForm.controls['email'].errors.required" class="text-danger">
+									required
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6" *ngIf="!updateid">
+							<div class="mb-3">
+								<label class="form-label">Password <span class="text-red">*</span></label>
+								<input type="password" name="password" class="form-control" placeholder="Password"
+									autocomplete="off" required [ngClass]="{
+														'is-invalid': companyRegisterForm.controls['password'].invalid && (companyRegisterForm.controls['password'].dirty || companyRegisterForm.controls['password'].touched) 
+													  }" formControlName="password">
+
+							</div>
+							
+						</div>
+						<div class="form-footer mt-2">
+							<button type="submit" [disabled]="
+												companyRegisterForm.invalid" class="btn  btn-primary btn-block px-2 btn-submit d-flex">
+								<div class="arrow bounce"><i class="fe fe-arrow-right "></i></div>
+								{{updateid ===null ? 'Add' : 'Update' }}
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

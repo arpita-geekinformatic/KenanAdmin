@@ -1,0 +1,92 @@
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">Customer List</h4>
+	</div>
+	<div class="page-rightheader ms-auto d-lg-flex d-none">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="javascript:void(0)" class="d-flex"><span class="breadcrumb-icon">
+						Customer</span></a></li>
+			<!-- <li class="breadcrumb-item"><a href="javascript:void(0)">Tables</a></li> -->
+			<li class="breadcrumb-item active" aria-current="page">List</li>
+		</ol>
+	</div>
+</div>
+<!--End Page header-->
+<!-- row opened -->
+<div class="row row-sm">
+	<div class="col-xl-12">
+		<div class="card" >
+			<div class="card-header pb-0">
+            <div>
+                <a routerLink="/customer/add" routerLinkActive="active" class="btn btn-primary">Add Customer</a>
+                
+            </div>
+			<div class="dataTables_length bs-select" id="dtBasicExample_length"><label>Show entries 
+				<select name="dtBasicExample_length" aria-controls="dtBasicExample" class="custom-select custom-select-sm form-control form-control-sm" #adminsdata (change)="onSelected(adminsdata.value)">
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+				</select></label>
+			</div>
+
+		</div>
+
+			
+
+
+			<div class="card-body recordInfo" *ngIf="customerLists?.length==0">
+				No Record Found
+			</div>
+			<div class="card-body" *ngIf="customerLists?.length > 0" >
+				<div class="table-responsive">
+					<table class="table text-md-nowrap table-striped" id="myTable1" >
+						<thead>
+							<tr>
+								<th class="wd-15p border-bottom-0">Name</th>
+								<th class="wd-15p border-bottom-0">Address</th>
+								<th class="wd-20p border-bottom-0">Email</th>
+                                <th class="wd-90p border-bottom-0 action" >Contact Number</th>									
+								<th class="wd-90p border-bottom-0 action" >Action</th>	
+							</tr>
+						</thead>
+
+						<tbody> 
+							<tr *ngFor="let table of customerLists|paginate
+							: {
+								itemsPerPage: tableSize,
+								currentPage: page,
+								totalItems: count
+							  };">
+								<td>{{table.Name | titlecase }}</td>
+								<td>{{table.Address | titlecase}}</td>
+								<td>{{table.Email}}</td>
+								<td>{{table.Phone}}</td>
+								<td><a title ="edit" class="edit" (click)="editCustomer(table._id)" ><i class="fe fe-edit">
+									</i>
+								</a>
+                                <a title="remove" (click)="deleteCustomer(table._id)"><i class="fe fe-trash">
+									</i>
+								</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<pagination-controls
+				*ngIf="count>5"
+				previousLabel="Prev"
+				nextLabel="Next"
+				(pageChange)="adminData($event,1)"
+				class="page-link"
+    			>
+    			</pagination-controls>
+
+
+
+			</div>
+		</div>
+	</div>
+	
+
+	

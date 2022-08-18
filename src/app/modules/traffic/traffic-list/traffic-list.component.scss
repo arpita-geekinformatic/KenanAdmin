@@ -1,0 +1,40 @@
+
+.custom-select{
+    border: 1px solid #d3dfea;
+    background: #fff;
+    border-radius: 5px;
+    height: 38px;
+    padding: 7px 10px;
+    font-weight: 400 !important;
+    width: 100%;
+}
+.trailerInfo label.form-label,
+.trailerInfo  select,
+.trailerInfo input {
+    font-size: 0.75rem;
+    text-transform: capitalize;
+}
+.trailerInfo button.btn.btn-primary.btn-submit {
+    width: 150px;
+}
+.btnWrap {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+.btnWrap .arrow {
+    height: 25px;
+}
+.error {
+    color: #ff0000;
+    font-size: 10px;
+    position: absolute;
+    bottom: -2px;
+    left:10px;
+}
+.trailerInfo .text-danger {
+    font-size: 10px;
+    position: absolute;
+    bottom: 11px;
+    left: 20px;
+}

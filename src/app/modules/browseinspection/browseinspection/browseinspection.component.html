@@ -1,0 +1,133 @@
+
+
+
+
+
+
+
+
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">Browse Inspection</h4>
+	</div>
+	<div class="page-rightheader ms-auto d-lg-flex d-none">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="javascript:void(0)" class="d-flex"><span class="breadcrumb-icon">
+				Browse Inspection</span></a></li>
+			<!-- <li class="breadcrumb-item"><a href="javascript:void(0)">Tables</a></li> -->
+			<li class="breadcrumb-item active" aria-current="page">List</li>
+		</ol>
+	</div>
+</div>
+<!--End Page header-->
+<!-- row opened -->
+<div class="row row-sm">
+	<div class="col-xl-12">
+		<div class="card" >
+            <div class="card-header pb-0">
+            <div>
+                <a routerLink="/browseinspection/add" routerLinkActive="active" class="btn btn-primary">Add Inspection</a>
+            </div>
+			<div class="dataTables_length bs-select" id="dtBasicExample_length"><label>Show entries 
+				<select name="dtBasicExample_length" aria-controls="dtBasicExample" class="custom-select custom-select-sm form-control form-control-sm" #companydata (change)="onSelected(companydata.value)">
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="20">20</option>
+				</select></label>
+			</div>
+            </div>
+<!-- 
+			<div class="card-body recordInfo" *ngIf="adminsLists?.length==0">
+				No Record Found
+			</div> -->
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table text-md-nowrap table-striped table-bordered browseInspectionTable"  id="myTable1">
+						<thead>
+							<tr>
+                                <th class="wd-15p border-bottom-0">Trailer Number:</th>
+								<th class="wd-20p border-bottom-0">TRAILER COMPANY:</th>
+                                <th class="wd-90p border-bottom-0 action" >Trailer Type:</th>
+                                <th class="wd-90p border-bottom-0 action" >Trailer Seal:</th>
+                                <th class="wd-90p border-bottom-0 action" >Trailer Location:</th>
+								<th class="wd-90p border-bottom-0 action" >Time Checked In:</th>		
+                                <th class="wd-90p border-bottom-0 action" >Driver Image</th>
+								<th class="wd-90p border-bottom-0 action" colspan="2">Entry Options</th>								
+							
+							</tr>
+						</thead>
+						<tbody> 
+							<tr *ngFor="let table of Details |paginate
+							: {
+								itemsPerPage: tableSize,
+								currentPage: page,
+								totalItems: count
+							  } let i = index">
+						
+                                <!-- <td>
+                                    {{convertMoment(table.DATE)}}
+                                </td> -->
+								<td>{{table.TRAILER_NUBMER}}</td>
+                                
+                                <td>
+                                    {{table.TRAILER_COMPANY | titlecase}}
+                                </td>
+                                <td>
+                                    {{table.TRAILER_TYPE}}
+                                </td>
+								<td>
+                                    {{table.SEAL_COMMENTS}}
+                                </td>
+							
+                                <td>
+                                    {{table.TRAILER_LOCATION}}
+                                </td>
+								<td>
+                                    {{convertMoment(table.DATE)}}
+                                </td>
+                             
+								<td>
+									<img src="{{table.DRIVER_PICTURE}}"  (error)="handleMissingImage($event,'DRIVER_PICTURE',i)">
+								 </td>
+                            
+								<td><a title ="edit" class="edit" (click)="editBrowseInspecion(table._id)" ><i class="fe fe-edit">
+									</i>
+									</a>
+	                            </td>
+
+								<td><a title ="edit" class="edit" (click)="detailsBrowseInspecion(table._id)">
+								<button class="btn">view</button>
+								</a>
+								</td>
+						
+							<!-- <td>
+								<a routerLink="/browseinspection/details" routerLinkActive="active" class="btn btn-primary">details</a>
+					</td> -->
+							</tr>
+						</tbody>
+					</table>
+				</div>
+		 	
+
+				<pagination-controls
+				*ngIf="count>4" 
+				class="planes-pagination"
+				previousLabel="Prev"
+				nextLabel="Next"
+				(pageChange)="browseData($event,1)"
+			
+    			>
+    			</pagination-controls>
+			
+
+				
+
+
+			</div>
+		</div>
+	</div>
+	
+
+	

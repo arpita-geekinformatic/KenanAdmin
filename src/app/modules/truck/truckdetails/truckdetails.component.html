@@ -1,0 +1,96 @@
+<!--Page header-->
+<div class="page-header">
+    <div class="page-leftheader">
+        <h4 class="page-title">Truck Information</h4>
+    </div>
+
+</div>
+<!--End Page header-->
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Truck Details</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <form [formGroup]="truckRegister" (ngSubmit)="addtruck()">
+
+                        <div class="col-sm-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Company Name <span class="text-red">*</span></label>
+                                <input type="text" class="form-control" placeholder="Company Name" required
+                                    autocomplete="on" [ngClass]="{
+														'is-invalid': truckRegister.controls['CompanyName'].invalid && (truckRegister.controls['CompanyName'].dirty || truckRegister.controls['CompanyName'].touched) 
+													  }" formControlName="CompanyName">
+                            </div>
+                            <div
+                                *ngIf="truckRegister.controls['CompanyName'].invalid && (truckRegister.controls['CompanyName'].dirty || truckRegister.controls['CompanyName'].touched)">
+                                <div *ngIf="truckRegister.controls['CompanyName'].errors.required" class="text-danger">
+                                    Company Name
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Truck Number <span class="text-red">*</span></label>
+                                <input type="text" class="form-control" placeholder="Truck No" required
+                                    autocomplete="on" [ngClass]="{
+														'is-invalid': truckRegister.controls['truckNo'].invalid && (truckRegister.controls['truckNo'].dirty || truckRegister.controls['truckNo'].touched) 
+													  }" formControlName="truckNo">
+                            </div>
+                            <div
+                                *ngIf="truckRegister.controls['truckNo'].invalid && (truckRegister.controls['truckNo'].dirty || truckRegister.controls['truckNo'].touched)">
+                                <div *ngIf="truckRegister.controls['truckNo'].errors.required" class="text-danger">
+                                    Truck No.
+                                </div>
+                            </div>
+
+
+                            <div class="d-grid">
+                                <label class="form-label">Truck Type <span class="text-red">*</span></label>
+                                <select class="custom-select mb-3" formControlName="truckType">
+
+                                    <option value="big">big</option>
+                                    <option value="big">Small</option>
+                                    
+                                </select>
+                                <div
+                                    *ngIf="truckRegister.controls['truckType'].invalid && (truckRegister.controls['truckType'].dirty || truckRegister.controls['truckType'].touched)">
+                                    <div *ngIf="truckRegister.controls['truckType'].errors.required"
+                                        class="text-danger">
+                                        Truck type
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">DL Number <span class="text-red">*</span></label>
+                                <input type="text" class="form-control" placeholder="DL Number" required
+                                    autocomplete="on" [ngClass]="{
+														'is-invalid': truckRegister.controls['dlNumber'].invalid && (truckRegister.controls['dlNumber'].dirty || truckRegister.controls['dlNumber'].touched) 
+													  }" formControlName="dlNumber">
+                            </div>
+                            <div
+                                *ngIf="truckRegister.controls['dlNumber'].invalid && (truckRegister.controls['dlNumber'].dirty || truckRegister.controls['dlNumber'].touched)">
+                                <div *ngIf="truckRegister.controls['dlNumber'].errors.required" class="text-danger">
+                                    DL No.
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="form-footer mt-2">
+                            <button type="submit" [disabled]="
+												truckRegister.invalid" class="btn  btn-primary btn-block px-2 btn-submit d-flex">
+                                <div class="arrow bounce"><i class="fe fe-arrow-right "></i></div>
+                                Register
+                            </button>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+.edit{
+    color: white;
+    border: 2px;
+    cursor: pointer;
+}
+.delete{
+    color: white;
+    border: 2px;
+    cursor: pointer;
+}
+
+
+.recordInfo{
+    color: red;
+    display: flex;justify-content: center;
+
+}
+a.edit {
+    margin-right: 10px;
+}
+.card-header.pb-0 {
+    display: flex;
+    justify-content: space-between;
+}
+ 
+
+::ng-deep .ngx-pagination .current {
+    background: #0f034e!important;
+} 
+
+.form-control-sm{
+    -webkit-appearance: auto!important;
+    appearance: auto!important;
+    padding: 5px;
+}
+
+td{
+    margin-left: 20px;
+    
+}
+table#myTable1 tbody th {
+    font-size: 15px;
+}
+table#myTable1 tbody td {
+    white-space: nowrap;
+    font-size: 14px;
+}
+table#myTable1 th {
+    white-space: nowrap;
+}
+table#myTable1 tbody td img {
+    width: 55px;
+ //   max-width: 100px;
+}
+a{
+    cursor: pointer;
+}
+// img{
+//     height: 66px;
+// }
+table.browseInspectionTable {
+    border: 1px solid #eff0f6 !important;
+    vertical-align: middle;
+}
+table.browseInspectionTable th,
+table.browseInspectionTable td {
+    vertical-align: middle;
+}
+/* 
+
+ */

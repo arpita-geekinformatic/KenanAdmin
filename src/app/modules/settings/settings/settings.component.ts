@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',

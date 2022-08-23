@@ -92,6 +92,12 @@ export const full_content: Routes = [
   loadChildren: () => import('../../modules/customer/customer.module').then(m=>m.CustomerModule)
 },  
 
+{
+  path: 'settings',
+  canActivate:[AuthorizationGuard],
+
+  loadChildren: () => import('../../modules/settings/settings.module').then(m=>m.SettingsModule)
+},  
 
 
 ]

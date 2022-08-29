@@ -29,6 +29,7 @@ import { GuardModule } from './modules/guard/guard.module';
 import { BrowseinspectionModule } from './modules/browseinspection/browseinspection.module';
 import { CompanyModule } from './modules/company/company.module';
 import { CustomerModule } from './modules/customer/customer.module';
+import { DetailsComponent } from './modules/details/details.component';
 
 
 
@@ -40,6 +41,7 @@ import { CustomerModule } from './modules/customer/customer.module';
     RegisterComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    DetailsComponent,
 
     // UserListComponent,
     // AddUserComponent

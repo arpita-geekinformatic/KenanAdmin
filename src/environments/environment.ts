@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //BaseUrl: 'http://ec2-18-222-141-47.us-east-2.compute.amazonaws.com:3000/api/v1/',
-   BaseUrl: 'http://localhost:5000/kenandemo-bdb1d/us-central1/app/',
+  BaseUrl: 'https://us-central1-kenandemo-bdb1d.cloudfunctions.net/app/',
+  //  BaseUrl: 'http://localhost:5000/kenandemo-bdb1d/us-central1/app/',
 //   firebase:{
 //     apiKey: "AIzaSyBy1f41fb1NbsX6_MX0VGzT0WRMJAhVmGQ",
 //     authDomain: "dashtic-b40aa.firebaseapp.com",

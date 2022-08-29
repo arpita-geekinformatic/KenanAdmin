@@ -64,7 +64,6 @@ export class UpdateGuardComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      debugger
       const id = params['id'];
       this.updateid = id ? id : null;
       if(id)

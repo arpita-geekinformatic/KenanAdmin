@@ -78,6 +78,7 @@ export class UserListComponent implements OnInit {
   }
 
   // edit user data
+  
   editUser(id: any, data: any) {    
     this.router.navigate(
       ['users/edit'],

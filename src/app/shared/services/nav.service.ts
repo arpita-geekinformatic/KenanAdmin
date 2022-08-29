@@ -33,7 +33,6 @@ export class NavService implements OnDestroy {
     constructor(
         private router: Router
     ) {
-        console.log()
         this.setScreenWidth(window.innerWidth);
         fromEvent(window, 'resize').pipe(
             debounceTime(1000),
@@ -68,13 +67,11 @@ export class NavService implements OnDestroy {
     
     MENUITEMS: Menu[] = [
         { path: '/dashboard/dashboard01',title: 'Dashboard', icon: ' <i class="fa fa-home" aria-hidden="true"></i>',type: 'link', active: false, },
-        { path: '/admins',icon: ' <i class="fa fa-user-circle-o" aria-hidden="true"></i>', title: 'Admins', type: 'link'},
-        { path: '/drivers',icon: ' <i class="fa fa-user" aria-hidden="true"></i>', title: 'Drivers', type: 'link'},
-        { path: '/truck',icon: ' <i class="fa fa-building-o"  aria-hidden="true"></i>', title: 'Truck', type: 'link'},
         { path: '/users',icon: ' <i class="fa fa-user" aria-hidden="true"></i>', title: 'Users', type: 'link'},
-        { path: '/customer',icon: ' <i class="fa fa-users" aria-hidden="true"></i>', title: 'Customer', type: 'link'},
-        { path: '/company',icon: '<i class="fa fa-building" aria-hidden="true"></i>', title: 'Company', type: 'link'},
-        { path: '/browseinspection',icon: ' <i class="fa fa-filter" aria-hidden="true"></i>', title: 'Browse Inspection', type: 'link'},
+        { path: '/gifts',icon: ' <i class="fa fa-gift" aria-hidden="true"></i>', title: 'Gifts', type: 'link'},
+        { path: '/allChilds',icon: ' <i class="fa fa-users" aria-hidden="true"></i>', title: 'Childs', type: 'link'},
+
+        // { path: '/company',icon: '<i class="fa fa-building" aria-hidden="true"></i>', title: 'Company', type: 'link'},
 
 
         // {

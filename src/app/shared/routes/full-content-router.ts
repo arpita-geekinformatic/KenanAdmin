@@ -76,12 +76,25 @@ export const full_content: Routes = [
 {
   path: 'users',
   canActivate:[AuthorizationGuard],
-  data: {
-    allowedRoles: ['superAdmin','Admin']
-  },
-  
   loadChildren: () => import('../../modules/users/users.module').then(m=>m.UsersModule)
 },
+
+
+{
+  path:'gifts',
+  canActivate:[AuthorizationGuard],
+  loadChildren: () => import('../../modules/gifts/gifts.module').then(m=> m.GiftsModule)
+
+},
+
+
+{
+  path:'allChilds',
+  canActivate:[AuthorizationGuard],
+  loadChildren: () => import('../../modules/child-list/child-list.module').then(m=> m.ChildListModule)
+
+},
+
 {
   path: 'customer',
   canActivate:[AuthorizationGuard],

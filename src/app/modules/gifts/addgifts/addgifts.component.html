@@ -1,0 +1,77 @@
+<!--Page header-->
+<div class="page-header">
+	<div class="page-leftheader">
+		<h4 class="page-title">{{!updateid ? 'Add Gift':'Update Gift'}}</h4>
+	</div>
+	<div class="page-rightheader ms-auto d-lg-flex d-none">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="javascript:void(0)" class="d-flex"><span class="breadcrumb-icon">
+						Gift</span></a></li>
+			<!-- <li class="breadcrumb-item"><a href="javascript:void(0)">Tables</a></li> -->
+			<li class="breadcrumb-item active" aria-current="page">{{!updateid ? 'Add' : 'Update' }}</li>
+
+		</ol>
+	</div>
+</div>
+<!--End Page header-->
+<div class="row">
+	<div class="col-xl-12 col-lg-12 col-md-12">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">{{!updateid ? 'User Details':role}} </h3>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<form [formGroup]="adminRegisterForm" (ngSubmit)="!updateid ? addUser() :  UpdateUserdata()">
+						<div class="col-sm-6 col-md-6">
+							<div class="mb-3">
+								<label class="form-label">Name <span class="text-red">*</span></label>
+								<input type="text" class="form-control" placeholder="Name" required autocomplete="on"
+									[ngClass]="{
+														'is-invalid': adminRegisterForm.controls['name'].invalid && (adminRegisterForm.controls['name'].dirty || adminRegisterForm.controls['name'].touched) 
+													  }" formControlName="name">
+							</div>
+							<div
+								*ngIf="adminRegisterForm.controls['name'].invalid && (adminRegisterForm.controls['name'].dirty || adminRegisterForm.controls['name'].touched)">
+								<div *ngIf="adminRegisterForm.controls['name'].errors.required" class="text-danger">
+									Required
+								</div>
+							</div>
+						</div>
+					
+						<div class="col-sm-6 col-md-6" >
+                            <div class="mb-3">
+								<label class="form-label">Icon <span class="text-red">*</span></label>
+								<input type="file" class="form-control" placeholder="Name" required autocomplete="on"
+									[ngClass]="{
+														'is-invalid': adminRegisterForm.controls['name'].invalid && (adminRegisterForm.controls['name'].dirty || adminRegisterForm.controls['name'].touched) 
+													  }" formControlName="name">
+							</div>
+							<div
+								*ngIf="adminRegisterForm.controls['name'].invalid && (adminRegisterForm.controls['name'].dirty || adminRegisterForm.controls['name'].touched)">
+								<div *ngIf="adminRegisterForm.controls['name'].errors.required" class="text-danger">
+									Required
+								</div>
+							</div>
+						
+							
+						</div>
+
+					
+
+
+					
+	
+						<div class="form-footer mt-2">
+							<button type="submit" [disabled]="
+												adminRegisterForm.invalid" class="btn  btn-primary btn-block px-2 btn-submit d-flex">
+								<div class="arrow bounce"><i class="fe fe-arrow-right "></i></div>
+								{{updateid ===null ? 'Add' : 'Update' }}
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api.service';
 import { FormService, USERSOPTION } from 'src/app/shared/services/form.service';
 import { filter } from 'rxjs/operators';
+import { Observable, ReplaySubject } from 'rxjs';
 @Component({
   selector: 'app-addgifts',
   templateUrl: './addgifts.component.html',
@@ -14,7 +15,7 @@ import { filter } from 'rxjs/operators';
 })
 export class AddgiftsComponent implements OnInit {
   public userItems: USERSOPTION | any;
-
+  imageSrc!: string
   updateid!: string;
   role!: string;
   closeResult = '';
@@ -25,6 +26,9 @@ export class AddgiftsComponent implements OnInit {
   hasError: boolean = false;
   public adminRegisterForm!: FormGroup;
   public adminUpdateForm!: FormGroup;
+  giftId = "";
+  base64Output!: string;
+
   get form() {
     return this.adminRegisterForm.controls;
   }
@@ -49,6 +53,7 @@ export class AddgiftsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const id = params['id'];
+      this.giftId = id
       // this.role= params['role']?params['role']:null
       this.updateid = id ? id : null;
       this.adminRegisterForm = this.formBuilder.group(
@@ -100,18 +105,15 @@ export class AddgiftsComponent implements OnInit {
 
   //  update user data
   UpdateUserdata() {
-
     const data = {
       name: this.form.name.value,
-      // lastName: this.form.lastName.value,
-      status: this.form.status.value,
-      email: this.form.email.value,
-      id: this.updateid,
+      icon: (this.form.icon.value) ? this.form.icon.value : this.imageSrc,
+      
     };
-    this.apiService.putData('parents', data).subscribe(
+    this.apiService.postData(`updateGiftType/${this.giftId}`, data).subscribe(
       (result: any) => {
         if (result?.responseCode === 200) {
-          // Handle result
+          
 
         }
       },
@@ -131,16 +133,11 @@ export class AddgiftsComponent implements OnInit {
     this.hasError = false;
     const data = {
       name: this.form.name.value,
-      // lastName: this.form.lastName.value,
-      status: this.form.status.value,
-      email: this.form.email.value,
-      password: this.form.password.value,
-      // role:this.form.userType.value,
+      icon: this.form.icon.value
     };
-    this.apiService.postData('users/add', data).subscribe(
+    this.apiService.postData('addGiftType', data).subscribe(
       (result: any) => {
         if (result.responseCode === 200) {
-          // Handle result
           this.toastr.success('Successfully registered.', 'Success!');
         }
       },
@@ -150,40 +147,25 @@ export class AddgiftsComponent implements OnInit {
         console.log('error inside');
       },
       () => {
-
         this.router.navigateByUrl('/users');
       }
     );
 
   }
   validateForm(email: string, password: string) {
-    if (email.length === 0) {
-      this.errorMessage = 'please enter email id';
-      return false;
-    }
-    if (password.length === 0) {
-      this.errorMessage = 'please enter password';
-      return false;
-    }
-    if (password.length < 6) {
-      this.errorMessage = 'password should be at least 6 char';
-      return false;
-    }
-    this.errorMessage = '';
-    return true;
+
   }
 
   //  get user data 
   updateUser(id: any) {
-    this.apiService.getData(`parents/${id}`).subscribe(
+    this.apiService.getData(`viewGiftType/${id}`).subscribe(
       (result: any) => {
 
-        this.adminRegisterForm.patchValue({
-          name: result.data.name,
-          // lastName: result[0].lastName,
-          status: result.data.isActive ? 'active' : 'inactive',
-          email: result.data.email,
-        });
+        this.imageSrc = result.data.icon
+        this.adminRegisterForm.get('name')?.setValue(result.data.name)
+        this.adminRegisterForm.get('icon')?.setValue(result.data.icon)
+
+        debugger
 
         this.adminDetails = { ...result };
         if (result.responseCode === 200) {
@@ -195,6 +177,37 @@ export class AddgiftsComponent implements OnInit {
         console.log('error inside', error);
       }
     );
+  }
+
+  onFileUpload(fileInput) {
+    var files = fileInput.target.files;
+    var file = files[0];
+    this.convertFile(file).subscribe(base64 => {
+      this.base64Output = base64;
+      if (this.base64Output) {
+        this.apiService.uploadImage('upload', { data: this.base64Output }).subscribe(
+          (result: any) => {
+            if (result.responseCode === 200) {
+              this.adminRegisterForm.get('icon')?.setValue(result.data.url)
+            }
+          },
+          (error) => {
+            this.hasError = true;
+            this.toastr.error(error.error.responseMessage, 'Error!');
+            console.log('error inside');
+          },
+
+        );
+      }
+    });
+  }
+
+  convertFile(file: File): Observable<string> {
+    const result = new ReplaySubject<string>(1);
+    const reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = (event: any) => result.next(btoa(event.target.result.toString()));
+    return result;
   }
 
   //  change user status

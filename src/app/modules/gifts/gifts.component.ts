@@ -38,14 +38,14 @@ export class GiftsComponent implements OnInit {
 
 
   userData(event) {
-    
     this.isSpinner = false
     this.page = event;
     let skip = this.pageSize * (event - 1)
-    this.apiService.getData(`userList?skip=${skip}&limit=${this.pageSize}`).subscribe(
+    this.apiService.getData(`giftTypeList?skip=${skip}&limit=${this.pageSize}`).subscribe(
       (result: any) => {
+
         this.isSpinner = true
-        this.adminsLists = result.data.userList;
+        this.adminsLists = result.data;
         this.count = result.data.totalItems;
         this.totalItems = result.data.totalItems;
 
@@ -59,7 +59,7 @@ export class GiftsComponent implements OnInit {
   // delete user Data
   deleteUser(id: any) {
     
-    this.apiService.deleteData(`parents/${id}`).subscribe(
+    this.apiService.deleteData(`deleteGiftType/${id}`).subscribe(
       (result: any) => {
         if (result?.responseCode === 200) {
           console.log('success');
@@ -76,10 +76,10 @@ export class GiftsComponent implements OnInit {
   }
 
   // edit user data
-  editUser(id: any, data: any) {    
+  editUser(data: any) {    
     this.router.navigate(
       ['/gifts/edit'],
-      { queryParams: { 'id': data.userId } }
+      { queryParams: { 'id':data.giftId } }
     );
   }
 }

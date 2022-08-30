@@ -75,6 +75,12 @@ getUserDetails(){
     return this.http.post(this.BaseUrl + url, data, headers);
   }
 
+
+  uploadImage(url: string, data) {
+    return this.http.post(this.BaseUrl + url, data);
+  }
+
+
   putData(url: string, data) {
     const headers = {
       headers: new HttpHeaders({

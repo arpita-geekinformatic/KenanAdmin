@@ -38,30 +38,31 @@
 								</div>
 							</div>
 						</div>
-					
-						<div class="col-sm-6 col-md-6" >
-                            <div class="mb-3">
+
+						<div class="col-sm-6 col-md-6">
+							<div class="mb-3">
 								<label class="form-label">Icon <span class="text-red">*</span></label>
-								<input type="file" class="form-control" placeholder="Name" required autocomplete="on"
-									[ngClass]="{
-														'is-invalid': adminRegisterForm.controls['name'].invalid && (adminRegisterForm.controls['name'].dirty || adminRegisterForm.controls['name'].touched) 
-													  }" formControlName="name">
+								<input type="file" class="form-control" placeholder="Icon"
+									(change)="onFileUpload($event)" required autocomplete="on" [ngClass]="{
+														'is-invalid': adminRegisterForm.controls['icon'].invalid && (adminRegisterForm.controls['icon'].dirty || adminRegisterForm.controls['icon'].touched) 
+													  }" formControlName="icon">
 							</div>
 							<div
-								*ngIf="adminRegisterForm.controls['name'].invalid && (adminRegisterForm.controls['name'].dirty || adminRegisterForm.controls['name'].touched)">
-								<div *ngIf="adminRegisterForm.controls['name'].errors.required" class="text-danger">
+								*ngIf="adminRegisterForm.controls['icon'].invalid && (adminRegisterForm.controls['icon'].dirty || adminRegisterForm.controls['icon'].touched)">
+								<div *ngIf="adminRegisterForm.controls['icon'].errors.required" class="text-danger">
 									Required
 								</div>
 							</div>
-						
-							
+							<div *ngIf = "imageSrc">
+								<img [src]="imageSrc">
+							</div>
 						</div>
 
-					
 
 
-					
-	
+
+
+
 						<div class="form-footer mt-2">
 							<button type="submit" [disabled]="
 												adminRegisterForm.invalid" class="btn  btn-primary btn-block px-2 btn-submit d-flex">
